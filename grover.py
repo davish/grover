@@ -10,16 +10,6 @@ Original file is located at
 from google.colab import drive
 drive.mount('/content/gdrive')
 
-!pip3 install scikit-learn
-from os.path import exists
-from wheel.pep425tags import get_abbr_impl, get_impl_ver, get_abi_tag
-platform = '{}{}-{}'.format(get_abbr_impl(), get_impl_ver(), get_abi_tag())
-cuda_output = !ldconfig -p|grep cudart.so|sed -e 's/.*\.\([0-9]*\)\.\([0-9]*\)$/cu\1\2/'
-accelerator = cuda_output[0] if exists('/dev/nvidia0') else 'cpu'
-!pip3 install https://download.pytorch.org/whl/cu100/torch-1.0.1-cp36-cp36m-linux_x86_64.whl
-!pip3 install torch torchvision
-!pip3 install unidecode
-!pip3 install pronouncing
 import torch
 device =  torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
